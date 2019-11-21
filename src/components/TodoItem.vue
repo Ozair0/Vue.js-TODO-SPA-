@@ -62,7 +62,7 @@
         },
         methods: {
             removeTodo(index) {
-                this.$emit('removedTodo', index);
+                eventBus.$emit('removedTodo', index);
             },
             editTodo: function () {
                 this.beforeEditCache = this.title;
@@ -79,7 +79,7 @@
                     this.title = this.beforeEditCache;
                 }
                 this.editing = false;
-                this.$emit('fineshEdit', {
+                eventBus.$emit('fineshEdit', {
                     'index': this.index,
                     'todo': {
                         'id': this.id,

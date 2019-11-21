@@ -5,7 +5,7 @@
     <transition-group name="fade" enter-active-class="animated fadeInUp"
                       leave-active-class="animated fadeOutDown">
       <todo-item v-for="(todo, index) in todosFilterd" :key="todo.id" :checkAll="!anyRemaining"
-                 :todo="todo" :index="index" @removedTodo="removeTodo" @fineshEdit="fineshEdit">
+                 :todo="todo" :index="index">
 
       </todo-item>
     </transition-group>
@@ -67,6 +67,10 @@
 
                 ]
             }
+        },
+        created() {
+          eventBus.$on('removedTodo', (index) => this.removeTodo(index));
+          eventBus.$on('fineshEdit', (data) => this.fineshEdit(data));
         },
         computed: {
             remaining() {
